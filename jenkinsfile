@@ -17,21 +17,21 @@ pipeline{
 
             stage('Build'){
                 steps{
-                   bat 'maven clean package'
+                   bat 'mvn clean package'
                    echo 'Build Completed'
                 }
             }
             
             stage('Test'){
                 steps{
-                    bat 'maven Test'
+                    bat 'mvn Test'
                     echo 'Test Completed'
                 }
             }
 
             stage('Deploy'){
                 steps{
-                    bat 'maven deploy'
+                    bat 'mvn deploy'
                     echo 'Deploy Completed'
                 }
             }
