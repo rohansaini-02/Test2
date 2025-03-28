@@ -36,14 +36,14 @@ pipeline{
             //     }
             // }
 
-            stage('Run JAR'){
-                steps{
-                    script{
-                        def output = bat(script : 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true.trim)
-                        echo "Output from Jar: ${output}"
-                    }
+              stage('Run JAR'){
+            steps{
+                script{
+                    def output=sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true).trim()
+                    echo "Output from JAR: ${output}"
                 }
             }
+        }
         
     }
 
@@ -52,14 +52,14 @@ pipeline{
 
  
 
- // pipeline {
+//  pipeline {
 //     agent any
 
 //     tools{
 //         maven 'maven'
 //     }
 
-//    
+   
 
 //         stage('Run JAR'){
 //             steps{
@@ -71,7 +71,7 @@ pipeline{
 //         }
  
 //     }
-// }
+
 
 
 
