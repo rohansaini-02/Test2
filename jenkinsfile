@@ -1,22 +1,64 @@
-// pipeline {
+pipeline{
+     
+    agent any
+
+    tools{
+        maven 'maven'
+    }
+     
+    stages{
+        stage('Git Checkout'){
+            steps{
+                git branch : 'master' , url : 'https://github.com/rohansaini-02/Test2'
+                echo 'Git CheckOut Added'
+            }
+            
+        } 
+
+        stage('Build'){
+            steps{
+                bat 'maven clean package'
+                echo 'Build Completed'
+            }
+            
+            stage('Test'){
+                steps{
+                    bat 'maven Test'
+                    echo 'Test Completed'
+                }
+            }
+
+            stage('Deploy'){
+                steps{
+                    bat 'maven deploy'
+                    echo 'Deploy Completed'
+                }
+            }
+
+            stage('Run JAR'){
+                steps{
+                    script{
+                        def output = sh(script : 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar',returnStdout:true.trim)
+                        echo "Output from Jar: ${output}"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+ 
+
+ // pipeline {
 //     agent any
 
 //     tools{
 //         maven 'maven'
 //     }
 
-//     stages {
-//         stage('Build'){
-//             steps{
-//                 sh 'mvn clean package'
-//             }
-//         }
-        
-//          stage('Test') {
-//             steps {
-//                 sh 'mvn test'
-//             }re4w
-//         }
+//    
 
 //         stage('Run JAR'){
 //             steps{
@@ -67,37 +109,3 @@
 
 
 // }
-
-
-
-pipeline { 
-     agent any 
-     tools { 
-         maven 'maven'  // Ensure Maven is correctly configured in Global Tool Configuration 
-     } 
-     stages { 
-         stage('Build') { 
-             steps { 
-                 bat 'mvn clean package' 
-             } 
-         } 
-         stage('Test') { 
-             steps { 
-                 bat 'mvn test' 
-             } 
-         } 
-         stage('Run JAR') { 
-             steps { 
-                 script { 
-                     // Run the JAR file and capture the output 
-                     def output = bat(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout: true).trim() 
-  
-                     // Print the output to Jenkins console 
-                     echo "Output from JAR: ${output}" 
-                 } 
-             } 
-         } 
-     } 
- } 
-  
-//  Students who and all facing problem in java code, you can use this file - from Devops mentor
