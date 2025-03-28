@@ -6,16 +6,21 @@ pipeline {
     }
 
     stages {
-        
+        stage(Git Checkout){
+            steps{
+                git branch: 'master' , url :  'https://github.com/rohansaini-02/Test2'  
+            }
+        }
+
         stage('Build'){
             steps{
-                echo 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
         
          stage('Test') {
             steps {
-                echo 'mvn test'
+                sh 'mvn test'
             }
         }
 
@@ -25,8 +30,8 @@ pipeline {
                     def output=sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true).trim()
                     echo "Output from JAR: ${output}"
                 }
-            }
-        }
+            }
+ }
  
     }
 }
