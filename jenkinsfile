@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage(Git Checkout){
-            steps{
-                git branch: 'master' , url :  'https://github.com/rohansaini-02/Test2'  
-            }
-        }
-
         stage('Build'){
             steps{
                 sh 'mvn clean package'
@@ -31,7 +25,7 @@ pipeline {
                     echo "Output from JAR: ${output}"
                 }
             }
- }
+        }
  
     }
 }
