@@ -29,84 +29,18 @@ pipeline{
                 }
             }
 
-            // stage('Deploy'){
-            //     steps{
-            //         bat 'mvn deploy '
-            //         echo 'Deploy Completed'
-            //     }
-            // }
-
-              stage('Run JAR'){
-            steps{
+            stage('Run JAR'){
+                steps{
                 script{
                     def output=sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true).trim()
                     echo "Output from JAR: ${output}"
                 }
             }
-        }
+         }
         
     }
 
 }
 
 
- 
-
-//  pipeline {
-//     agent any
-
-//     tools{
-//         maven 'maven'
-//     }
-
-   
-
-//         stage('Run JAR'){
-//             steps{
-//                 script{
-//                     def output=sh(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true).trim()
-//                     echo "Output from JAR: ${output}"
-//                 }
-//             }
-//         }
- 
-//     }
-
-
-
-
-// pipeline{
-    
-//     agent any
-//      stages{
-//         stage('Git Checkout'){
-//             steps{
-//               git branch : 'master' , url : 'https://github.com/rohansaini-02/Test2'
-//               echo 'Git Checkout Added'
-//             }
-//         }
-
-//         stage('Build'){
-//             steps{
-//                 bat 'maven clean package'
-//                 echo 'Build Completed'
-//             }
-//         }
-        
-//         stage('Test'){
-//             steps{
-//                 bat 'maven test'
-//                 echo 'Test Completed'
-//             }
-//         }
-//         stage('Deploy'){
-//             steps{
-//                 bat 'maven deploy'
-//                 echo 'Deploy Completed'
-//             }
-//         }
-//      }
-
-
-
-// }
+  
