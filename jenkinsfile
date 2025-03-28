@@ -24,17 +24,17 @@ pipeline{
             
             stage('Test'){
                 steps{
-                    bat 'maven Test'
+                    bat 'mvn test'
                     echo 'Test Completed'
                 }
             }
 
-            // stage('Deploy'){
-            //     steps{
-            //         bat 'mvn deploy'
-            //         echo 'Deploy Completed'
-            //     }
-            // }
+            stage('Deploy'){
+                steps{
+                    bat 'mvn deploy'
+                    echo 'Deploy Completed'
+                }
+            }
 
             stage('Run JAR'){
                 steps{
