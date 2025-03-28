@@ -15,10 +15,11 @@ pipeline{
             
         } 
 
-        stage('Build'){
-            steps{
-                bat 'maven clean package'
-                echo 'Build Completed'
+            stage('Build'){
+                steps{
+                   bat 'maven clean package'
+                   echo 'Build Completed'
+                }
             }
             
             stage('Test'){
@@ -38,12 +39,12 @@ pipeline{
             stage('Run JAR'){
                 steps{
                     script{
-                        def output = sh(script : 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar',returnStdout:true.trim)
+                        def output = sh(script : 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout:true.trim)
                         echo "Output from Jar: ${output}"
                     }
                 }
             }
-        }
+        
     }
 
 }
